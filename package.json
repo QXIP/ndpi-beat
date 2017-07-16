@@ -1,0 +1,23 @@
+{
+  "name": "ndpi-beat",
+  "description": "NodeJS nDPI Beat for Elasticsearch",
+  "author": "Lorenzo Mangani <lorenzo.mangani@gmail.com>",
+  "version": "0.1.2",
+  "dependencies": {
+    "ffi": "*",
+    "node-cache": "^3.2.1",
+    "pcap": "git+https://github.com/mranney/node_pcap.git",
+    "pcap-parser": "*",
+    "ref": "*",
+    "ref-array": "*",
+    "ref-struct": "*",
+    "elasticsearch-writable-stream": "*",
+    "elasticsearch": "^12.0.0"
+  },
+  "config": {
+    "unsafe-perm":true
+  },
+  "scripts": {
+    "start": "nodejs ndpibeat.js"
+  }
+}
