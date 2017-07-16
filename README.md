@@ -6,10 +6,40 @@ This experimental, unoptimized, proof-of-concept application implements a "Beat-
 ##### What is nDPI ?
 [nDPI](https://github.com/ntop/nDPI) is an open source LGPLv3 library for deep-packet inspection. Based on OpenDPI it includes ntop extensions. We have tried to push them into the OpenDPI source tree but nobody answered emails so we have decided to create our own source tree
 
+### Install & Run
+```
+npm install
+npm start
+```
+
 ## Protocol Usage
 ![](http://i.imgur.com/2sToP5i.png)
 
 ## Protocol Relations
 ![](http://i.imgur.com/xET4d9H.png)
+
+#### Example Doc
+```
+{
+  "_index": "ndpi-2017.07.16",
+  "_type": "ndpi",
+  "_id": "AV1Mf5Wbqfm0n-9A-lsL",
+  "_score": null,
+  "_source": {
+    "l7_protocol": "HTTP",
+    "tsl_protocol": "tcp",
+    "saddr": {
+      "addr": "10.0.0.2"
+    },
+    "daddr": {
+      "addr": "10.0.0.1"
+    },
+    "sport": 19200,
+    "dport": 48630,
+    "psize": 1402,
+    "ts": "2017-07-16T17:43:35.579Z"
+  }
+}
+```
 
 ##### (C) QXIP BV, http://qxip.net
