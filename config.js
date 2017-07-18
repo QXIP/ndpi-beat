@@ -2,6 +2,10 @@
 
 module.exports = {
   debug: true,
+  pcap: {
+    interface: "",
+    filter: ""
+  },
   elastic: {
     queue: {
 	index: "ndpi",
