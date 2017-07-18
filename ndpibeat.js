@@ -104,7 +104,7 @@ pktHdr = ref.refType(ref.types.void);
 
 runner.gcallback = ffi.Callback('void', [ref.types.int32, ref.refType(ref.types.uchar)],
   function(id) {
-    console.log("id: ", id);
+    if (debug) console.log("id: ", id);
   });
 
 runner.ndpi = exports.ndpi = new ffi.Library('./lib/ndpiexlib.so', {
@@ -146,10 +146,8 @@ var reboot = function(){
 console.log("Listening on " + pcap_session.device_name);
 
 runner.onProto = function(id, packet) {
-	if (id > 0) console.log("Proto: "+id+" "+L7PROTO[id]);
-
+	if (id > 0 && debug) console.log("Proto: "+id+" "+L7PROTO[id]);
 }
-
 
 runner.getFlowInfo = function(packet,l7_protocol){
 	if(packet.payload.payload instanceof IPv4){
@@ -167,7 +165,7 @@ runner.getFlowInfo = function(packet,l7_protocol){
 			tsl_protocol = 'udp';
 		}else{
 			tsl_protocol = 'unknown';
-			console.log('skip!');
+			if (debug) console.log('skip!');
 		}
 		return {l7_protocol,tsl_protocol,saddr,daddr,sport,dport,psize};
 	}
@@ -176,7 +174,7 @@ runner.getFlowInfo = function(packet,l7_protocol){
 
 runner.onPacketAnalyzedCallback = function(flow_info){
  try {
-  // console.log( flow_info.psize+" bytes from "+flow_info.saddr+":"+flow_info.sport+" to "+flow_info.daddr+":"+flow_info.dport+" with protocol : "+flow_info.l7_protocol);
+  if (debug) console.log( flow_info.psize+" bytes from "+flow_info.saddr+":"+flow_info.sport+" to "+flow_info.daddr+":"+flow_info.dport+" with protocol : "+flow_info.l7_protocol);
   var now = new Date();
   flow_info.ts = now.toISOString();
   var doc = {
