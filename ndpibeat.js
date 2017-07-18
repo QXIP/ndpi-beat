@@ -158,25 +158,19 @@ runner.onProto = function(id, packet) {
 runner.getFlowInfo = function(packet,l7_protocol){
 	if(packet.payload.payload instanceof IPv4){
 		var ip = packet.payload.payload;
-		var saddr = ip.saddr;
-		var daddr = ip.daddr;
-		var sport = null;
-	    	var dport = null;
+		var saddr = Array.prototype.join.call(ip.saddr, '.'); // ip.saddr;
+		var daddr = Array.prototype.join.call(ip.daddr, '.'); // ip.daddr;
+		var sport = tsl_packet.sport;
+	    	var dport = tsl_packet.dport;
 		var psize = packet.payload.payload.length;
 		var tsl_packet = packet.payload.payload.payload;
 		var tsl_protocol = '';
 		if(tsl_packet instanceof TCP){
 			tsl_protocol = 'tcp';
-			sport = tsl_packet.sport;
-			dport = tsl_packet.dport;
 		}else if (tsl_packet instanceof UDP){
 			tsl_protocol = 'udp';
-			sport = tsl_packet.sport;
-			dport = tsl_packet.dport;
 		}else{
 			tsl_protocol = 'unknown';
-			sport = tsl_packet.sport;
-			dport = tsl_packet.dport;
 			console.log('skip!');
 		}
 		return {l7_protocol,tsl_protocol,saddr,daddr,sport,dport,psize};
@@ -196,7 +190,6 @@ runner.onPacketAnalyzedCallback = function(flow_info){
 	  body: flow_info
   }
   queue.write(doc, function(e){ if(e) console.log(e); });
-  //queue.write(doc);
  } catch(e) { console.log(e); }
 
 }
@@ -211,7 +204,6 @@ runner.ndpiPipe = function(header,packet,callback){
 		});
 		runner.ndpi.processPacket(header, packet.buf);
 	} catch(e) {
-		// console.log(e);
 		errors++
 	}
 }
@@ -244,7 +236,6 @@ process.on('SIGINT', function() {
     	console.log("Press CTRL-C within 2 seconds to Exit...");
         exit = true;
 	setTimeout(function () {
-    	  // console.log("Continuing...");
 	  exit = false;
 	}, 2000)
     }
