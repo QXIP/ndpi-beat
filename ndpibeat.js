@@ -6,24 +6,20 @@
 
 var VERSION = "0.1.2";
 
+var config = require('./config');
+if (!config) quit('Missing Config!');
+
 /* NODE REQs */
 var ref = require('ref');
 var ffi = require('ffi');
 var Struct = require('ref-struct');
 var ArrayType = require('ref-array');
 var fs = require('fs');
-var pcap = require("pcap"),
-    pcap_session = pcap.createSession("", "");
-
-var quit = function(){
-	console.log(e);
-	process.exit(0);
-}
-
-var config = require('./config');
-if (!config) quit('Missing Config!');
 var debug = config.debug;
-
+var quit = function(){ console.log(e); process.exit(0); }
+var pcap = require("pcap"),
+    pcap_session = pcap.createSession(config.pcap.interface ? config.pcap.interface : "", 
+				      config.pcap.filter ? config.pcap.filter : "" );
 var elasticsearch = require('elasticsearch');
 var client = new elasticsearch.Client(config.elastic.queue.options.client);
 if (!client) { quit('Error generating ES client!');}
