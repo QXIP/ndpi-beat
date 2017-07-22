@@ -19,6 +19,6 @@
   },
   "scripts": {
     "start": "nodejs ndpibeat.js",
-    "mkndpi": "cd lib && ./install.sh"
+    "mkndpi": "(cd ./lib && ./install.sh)"
   }
 }
