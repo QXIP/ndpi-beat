@@ -11,6 +11,7 @@ This experimental, unoptimized, proof-of-concept application implements a "Beat-
 ### Install & Run
 ```
 npm install
+npm mkndpi
 npm start
 ```
 
