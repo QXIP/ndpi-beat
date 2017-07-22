@@ -1,4 +1,4 @@
-<img src="https://cdn.pixabay.com/photo/2014/04/02/16/59/music-307566_640.png" width="150" />
+<img src="https://user-images.githubusercontent.com/1423657/28491403-0613832e-6ef1-11e7-8a9f-0c54cf0022bd.png" width="150" />
 
 # nDPI Beat
 
