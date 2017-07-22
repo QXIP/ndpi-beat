@@ -6,7 +6,7 @@ fi
 cd nDPI
 git pull
 ./autogen.sh && ./configure -with-pic
-make && make install
+make && make install && ldconfig
 cd ..
 make
 make lib
