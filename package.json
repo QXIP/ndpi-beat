@@ -18,6 +18,7 @@
     "unsafe-perm":true
   },
   "scripts": {
-    "start": "nodejs ndpibeat.js"
+    "start": "nodejs ndpibeat.js",
+    "mkndpi": "cd lib && ./install.sh"
   }
 }
